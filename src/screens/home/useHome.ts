@@ -18,7 +18,6 @@ export default function useHome() {
   const donationData = useSelector(
     (state: RootState) => state.donation.donationData,
   );
-  const loading = useSelector((state: RootState) => state.donation.loading);
   useEffect(() => {
     if (isFocused) {
       dispatch(fetchDonationData() as any);
@@ -45,7 +44,6 @@ export default function useHome() {
     profileImage,
     donationDataHorizontal: filteredDonationsHorizontal,
     donationDataVertical: filteredDonationsVertical,
-    loading,
     currentUser,
     setSearchInput,
   };

@@ -6,8 +6,8 @@ import ImagePicker, {
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import {Resource} from '../../constants/allTypes/allTypes';
-import {useSelector} from 'react-redux';
-import {selectAuthState} from '../../store/slice/authSlice';
+import {useDispatch, useSelector} from 'react-redux';
+import {logout, selectAuthState} from '../../store/slice/authSlice';
 import {useEffect, useState} from 'react';
 import Toast from 'react-native-toast-message';
 import {Alert} from 'react-native';
@@ -177,6 +177,11 @@ export default function useProfile() {
       });
     }
   };
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   return {
     currentUser,
     name,
@@ -188,5 +193,6 @@ export default function useProfile() {
     handlePicture,
     imageUploading,
     currentUsername: name,
+    handleLogout,
   };
 }

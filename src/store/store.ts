@@ -3,6 +3,7 @@ import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
 import getDonationReducer from './slice/getDonationSlice';
 import dontionRequest from './slice/getDonationRequestSlice';
 import authReducer from './slice/authSlice';
+import parksReducer from './slice/parkSlice';
 import {useDispatch,} from 'react-redux';
 
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
     auth: authReducer,
     donation: getDonationReducer,
     request: dontionRequest,
+    parks: parksReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

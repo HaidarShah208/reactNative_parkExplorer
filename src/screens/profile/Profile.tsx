@@ -9,17 +9,16 @@ import {
 import {RootTabParamsList} from '../../navigation/tabNavigation/TabNavigation';
 import {IMAGES} from '../../constants/assets/images';
 import {userStyle} from './ProfileStyle';
-import {TextInput} from 'react-native-gesture-handler';
 import Button from '../../components/button/Button';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import useProfile from './useProfile';
-import FontAwesome from '@react-native-vector-icons/fontawesome';
 
 interface userScreenProps {
   navigation: BottomTabNavigationProp<RootTabParamsList, 'user'>;
 }
 
 export default function Profile({navigation}: userScreenProps) {
+  
   const {
     currentUser,
     name,
@@ -29,7 +28,9 @@ export default function Profile({navigation}: userScreenProps) {
     loading,
     handlePicture,
     imageUploading,
+    handleLogout,
   } = useProfile();
+
 
   return (
     <View style={userStyle.mainContainer}>
@@ -52,8 +53,8 @@ export default function Profile({navigation}: userScreenProps) {
             </View>
           </TouchableOpacity>
         </View>
-        <Text style={userStyle.mail}>username</Text>
-        <Text style={userStyle.userEmail}>email</Text>
+        <Text style={userStyle.mail}>{name}</Text>
+        <Text style={userStyle.userEmail}>{currentUser.email}</Text>
       </View>
 
 
@@ -82,10 +83,10 @@ export default function Profile({navigation}: userScreenProps) {
       <TouchableOpacity
         style={[userStyle.button, userStyle.logoutButton]}
         >
-        <Text style={userStyle.buttonText}>Sign Out</Text>
+        <Text style={userStyle.buttonText} onPress={handleLogout}>Sign Out</Text>
       </TouchableOpacity>
 
-      <View style={userStyle.btnsContainer}>
+      {/* <View style={userStyle.btnsContainer}>
         <Button
           title={
             imageUploading || loading ? (
@@ -97,7 +98,7 @@ export default function Profile({navigation}: userScreenProps) {
           buttonStyle={userStyle.btnsContainer}
           onPress={handleSubmit}
         />
-      </View>
+      </View> */}
     </View>
   );
 }

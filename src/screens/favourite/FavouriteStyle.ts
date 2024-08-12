@@ -26,7 +26,7 @@ export const searchSt = StyleSheet.create({
   },
   mainImg: {
     left: 20,
-    width: 94,
+    width: 254,
     height: 141,
     borderRadius: 25,
   },

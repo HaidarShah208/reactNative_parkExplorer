@@ -1,4 +1,3 @@
-// authSlice.ts
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {AuthStates, UserProfileData} from '../../constants/allTypes/allTypes';
 import {RootState} from '../store';
