@@ -17,6 +17,11 @@ export const styleHome = StyleSheet.create({
     paddingHorizontal: 22,
     top: 15,
   },
+  selectedState: {
+    backgroundColor: '#ADD8E6',
+    borderRadius: 5,
+    color:'white'
+  },
   scrollImage: {
     marginTop: 40,
     display: 'flex',

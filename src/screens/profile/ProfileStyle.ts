@@ -38,7 +38,6 @@ export const userStyle = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     fontFamily: FONTS.BOLD,
-    // width: 321,
     height: 64,
   },
   profile: {
@@ -68,5 +67,81 @@ export const userStyle = StyleSheet.create({
   },
   logoutButton: {
     backgroundColor: '#ff5c5c',
+  },
+  container: {
+    flexGrow: 1,
+    padding: 30,
+    backgroundColor: 'white',
+  },
+  inputContainer: {
+    marginBottom: 20,
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  input: {
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    color: '#333',
+    backgroundColor: '#fff',
+  },
+  radioContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  radioButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 20,
+  },
+  radioCircle: {
+    height: 20,
+    width: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: '#444',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  selectedRadio: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: '#444',
+  },
+  radioText: {
+    marginLeft: 10,
+    fontSize: 16,
+    color: 'black',
+  },
+  saveButton: {
+    backgroundColor: '#007bff',
+    padding: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  saveButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  changePasswordButton: {
+    backgroundColor: '#007bff',
+    padding: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  changePasswordButtonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });

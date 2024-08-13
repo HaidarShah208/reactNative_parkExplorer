@@ -72,14 +72,14 @@ def jscFlavor = 'org.webkit:android-jsc:+'
 
 android {
     ndkVersion rootProject.ext.ndkVersion
- buildToolsVersion "30.0.3" // Ensure this is at least 30.0.3
-    compileSdk 30 // S
+  buildToolsVersion rootProject.ext.buildToolsVersion // Use the global variable
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     namespace "com.petAdoptionApplication"
     defaultConfig {
         applicationId "com.petAdoptionApplication"
         minSdkVersion rootProject.ext.minSdkVersion
-       targetSdkVersion 30 
+       targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -118,13 +118,16 @@ dependencies {
     implementation("com.facebook.react:flipper-integration")
     implementation project(':react-native-splash-screen')
     implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
-
+ 
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")
     } else {
         implementation jscFlavor
     }
+    
 }
+ 
+ 
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
 apply plugin: 'com.android.application'

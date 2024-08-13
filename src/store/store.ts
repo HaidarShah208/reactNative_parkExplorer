@@ -4,6 +4,7 @@ import getDonationReducer from './slice/getDonationSlice';
 import dontionRequest from './slice/getDonationRequestSlice';
 import authReducer from './slice/authSlice';
 import parksReducer from './slice/parkSlice';
+import favoritesReducer from './slice/favoriteSlice';
 import {useDispatch,} from 'react-redux';
 
 export const store = configureStore({
@@ -12,6 +13,7 @@ export const store = configureStore({
     donation: getDonationReducer,
     request: dontionRequest,
     parks: parksReducer,
+    favorites: favoritesReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

@@ -13,4 +13,9 @@ export const BOTTOM_TAB_SCREENS = {
   PROFILE: 'PROFILE',
 };
 
+
+export const PROFILE_STACK_SCREEN = {
+  PROFILE: 'PROFILE',
+  EDITPROFILE: 'EDITPROFILE',
+};
  

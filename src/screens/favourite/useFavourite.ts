@@ -1,22 +1,34 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../store/store';
-import {fetchFavoriteDonations} from '../../store/slice/getDonationSlice';
-import {useIsFocused} from '@react-navigation/native';
-import {useEffect} from 'react';
+import { selectFavorites, setFavorites } from '../../store/slice/favoriteSlice';
+import { useEffect } from 'react';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
+
 
 export default function useFavourite() {
   const dispatch = useDispatch();
-  const isFocused = useIsFocused();
-  const favoriteDonations = useSelector(
-    (state: RootState) => state.donation.favoriteDonations,
-  );
-  const loading = useSelector((state: RootState) => state.donation.loading);
+  const favorites = useSelector(selectFavorites);
+  const userId = auth().currentUser?.uid;
 
   useEffect(() => {
-    if (isFocused) {
-      dispatch(fetchFavoriteDonations() as any);
-    }
-  }, [dispatch, isFocused]);
+    if (userId) {
+      const unsubscribe = firestore()
+        .collection('favorites')
+        .doc(userId)
+        .collection('userFavorites')
+        .onSnapshot(snapshot => {
+          const uniqueFavoriteParks = Array.from(
+            new Map(
+              snapshot.docs.map(doc => [doc.data().parkId, doc.data()]),
+            ).values(),
+          );
+          dispatch(setFavorites(uniqueFavoriteParks));
+        });
 
-  return {favoriteDonations, loading};
+      return () => unsubscribe();
+    }
+  }, [dispatch, userId]);
+
+
+  return {favorites};
 }

@@ -157,7 +157,6 @@ export default function useSignup() {
         });
       dispatch(login(userData as UserData));
       console.log('Success', 'User SignUp Successfully', 'success');
-      // ShowToast('sucess', 'User SignUp Successfully');
     } catch (error) {
       console.error('Error during Google sign-in:', error);
     }

@@ -9,10 +9,8 @@ import React from 'react';
 import {styles} from './LoginStyle';
 import {RootStackParamsList} from '../../navigation/stackNavigation/StackNavigation';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {IMAGES} from '../../constants/assets/images';
 import Button from '../../components/button/Button';
 import useSignIn from './useLogin';
-import { Image } from 'react-native-svg';
 import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 interface LoginScreenProps {

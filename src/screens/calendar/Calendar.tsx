@@ -20,22 +20,25 @@ export default function Calendars({navigation}: calendarProps) {
   const [modalVisible, setModalVisible] = useState(false);
   const [newEvent, setNewEvent] = useState('');
 
+  const currentDate = new Date();
+  const formattedCurrentDate = currentDate.toISOString().split('T')[0]; 
+
   const theme = {
     backgroundColor: COLORS.WHITE,
     calendarBackground: COLORS.WHITE,
-    textSectionTitleColor: COLORS.TEXTSECONDARY,
+    textSectionTitleColor: '#0D6EFD',
     textSectionTitleDisabledColor: COLORS.TEXTSECONDARY,
     selectedDayBackgroundColor: COLORS.PRIMARY,
     selectedDayTextColor: COLORS.WHITE,
-    todayTextColor: COLORS.SECONDARY,
-    dayTextColor: COLORS.TEXTPRIMARY,
+    todayTextColor: 'red',
+    dayTextColor: 'black',
     textDisabledColor: COLORS.TEXTSECONDARY,
     dotColor: COLORS.PRIMARY,
     selectedDotColor: COLORS.WHITE,
-    arrowColor: COLORS.SECONDARY,
+    arrowColor: '#0D6EFD',
     disabledArrowColor: COLORS.TEXTSECONDARY,
     monthTextColor: COLORS.PRIMARY,
-    indicatorColor: COLORS.PRIMARY,
+    indicatorColor: '#0D6EFD',
     textDayFontFamily: 'monospace',
     textMonthFontFamily: 'monospace',
     textDayHeaderFontFamily: 'monospace',
@@ -61,7 +64,7 @@ export default function Calendars({navigation}: calendarProps) {
       setNewEvent('');
       setModalVisible(false);
     } else {
-      Alert.alert('Invalid Event', 'Event description cannot be empty.');
+      Alert.alert('Empty event cannot be added');
     }
   };
 
@@ -92,11 +95,11 @@ export default function Calendars({navigation}: calendarProps) {
   return (
     <View style={styles.container}>
       <Calendar
-        current={'2024-05-29'}
+        current={formattedCurrentDate}
         minDate={'2020-05-10'}
         maxDate={'2025-05-30'}
         onDayPress={handleDayPress}
-        monthFormat={'yyyy MM'}
+        monthFormat={'yyyy MM dd'}
         onMonthChange={(month: any) => {
           console.log('month changed', month);
         }}
@@ -112,15 +115,17 @@ export default function Calendars({navigation}: calendarProps) {
         disableArrowRight={false}
         disableAllTouchEventsForDisabledDays={true}
         enableSwipeMonths={true}
-        theme={theme}
+        theme={{theme,
+          todayTextColor: '#007bff',
+        }}
         markedDates={{
           ...Object.keys(events).reduce((acc, date) => {
-            acc[date] = { marked: true, dotColor: COLORS.PRIMARY };
+            acc[date] = { marked: true, dotColor: '#0D6EFD' };
             return acc;
           }, {}),
           [selectedDate]: {
             selected: true,
-            selectedColor: COLORS.PRIMARY,
+            selectedColor: '#0D6EFD',
           },
         }}
       />

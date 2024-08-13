@@ -16,21 +16,24 @@ export const searchSt = StyleSheet.create({
     color: 'black',
     paddingBottom: 10,
   },
-  MainContainer: {
-    marginTop: 20,
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+ 
+  containers: {
+    alignSelf: 'center',
+    marginTop: 10,
+  },
+  main: {
+    width: 90,
+    marginBottom: 10,
+    height: 50,
+    textAlign: 'center',
+    justifyContent: 'center',
     alignItems: 'center',
+    lineHeight: 52,
+    color: 'white',
+    borderRadius: 10,
+    overflow: 'hidden',
+    backgroundColor: 'blue',
   },
-  mainImg: {
-    left: 20,
-    width: 254,
-    height: 141,
-    borderRadius: 25,
-  },
-
   emptText: {
     textAlign: 'center',
     fontFamily: FONTS.BOLD,

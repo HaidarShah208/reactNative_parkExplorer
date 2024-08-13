@@ -37,16 +37,7 @@ export type Resource = {
   data?: string;
 };
 
-export interface YourState {
-  petType: string;
-  petBreed: string;
-  amount: string;
-  vaccinated: string;
-  gender: string;
-  petWeight: string;
-  petLocation: string;
-  description: string;
-}
+ 
 
 export type UserData = {
   username: string;

@@ -1,6 +1,6 @@
 import {View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {HOME, IMAGES} from '../../constants/assets/images';
+import {IMAGES} from '../../constants/assets/images';
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -8,7 +8,7 @@ import {
 import {drawarSide} from '../../styles/DrawarSideMenue';
 import {TextInput} from 'react-native-gesture-handler';
 import {useDispatch} from 'react-redux';
-import  {logout} from '../../store/slice/authSlice';
+import {logout} from '../../store/slice/authSlice';
 
 const SideMenue = (props: any) => {
   const dispatch = useDispatch();
@@ -31,8 +31,11 @@ const SideMenue = (props: any) => {
             </View>
           </TouchableOpacity>
           <View style={{flexDirection: 'row', marginBottom: 100}}>
-            <TextInput placeholder="search" placeholderTextColor={'black'} style={drawarSide.input} />
-             
+            <TextInput
+              placeholder="search"
+              placeholderTextColor={'black'}
+              style={drawarSide.input}
+            />
           </View>
           <DrawerItemList {...props} />
         </View>

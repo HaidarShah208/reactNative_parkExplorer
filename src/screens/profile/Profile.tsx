@@ -12,12 +12,21 @@ import {userStyle} from './ProfileStyle';
 import Button from '../../components/button/Button';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import useProfile from './useProfile';
+import { CompositeNavigationProp } from '@react-navigation/native';
+import { ProfileStackParamsList } from '../../navigation/stackNavigation/profileNavigation';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-interface userScreenProps {
-  navigation: BottomTabNavigationProp<RootTabParamsList, 'user'>;
+
+type ProfileScreenNavigationProp = CompositeNavigationProp<
+  BottomTabNavigationProp<RootTabParamsList, 'user'>,
+  StackNavigationProp<ProfileStackParamsList, 'PROFILE'>
+>;
+
+interface ProfileScreenProps {
+  navigation: ProfileScreenNavigationProp;
 }
 
-export default function Profile({navigation}: userScreenProps) {
+export default function Profile({navigation}: ProfileScreenProps) {
   
   const {
     currentUser,
@@ -58,14 +67,13 @@ export default function Profile({navigation}: userScreenProps) {
       </View>
 
 
-      <TouchableOpacity
+      <TouchableOpacity  onPress={() => navigation.navigate('EDITPROFILE')}
         style={userStyle.button}>
         <Text style={userStyle.buttonText}>Edit Profile</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={userStyle.button}
-        onPress={() => console.log('Settings')}>
+        style={userStyle.button}>
         <Text style={userStyle.buttonText}>Settings</Text>
       </TouchableOpacity>
 
@@ -86,19 +94,19 @@ export default function Profile({navigation}: userScreenProps) {
         <Text style={userStyle.buttonText} onPress={handleLogout}>Sign Out</Text>
       </TouchableOpacity>
 
-      {/* <View style={userStyle.btnsContainer}>
+      <View style={userStyle.btnsContainer}>
         <Button
           title={
             imageUploading || loading ? (
               <ActivityIndicator size="large" color="white" />
             ) : (
-              'Update profile'
+              'Update picture'
             )
           }
           buttonStyle={userStyle.btnsContainer}
           onPress={handleSubmit}
         />
-      </View> */}
+      </View>
     </View>
   );
 }

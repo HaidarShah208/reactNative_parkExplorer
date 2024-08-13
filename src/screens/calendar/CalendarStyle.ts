@@ -11,17 +11,18 @@ export const styles = StyleSheet.create({
     selectedDateContainer: {
       marginTop: 20,
       padding: 10,
-      backgroundColor: COLORS.SECONDARY,
+      backgroundColor: '#0D6EFD',
       borderRadius: 5,
       alignItems: 'center',
     },
     selectedDateText: {
-      color: COLORS.TEXTPRIMARY,
+      color: '#0D6EFD',
       fontSize: 16,
       fontWeight: 'bold',
     },
     modalView: {
-      margin: 20,
+      marginHorizontal: 20,
+      marginTop:190,
       backgroundColor: 'white',
       borderRadius: 20,
       padding: 35,
@@ -42,14 +43,15 @@ export const styles = StyleSheet.create({
     },
     input: {
       height: 40,
-      borderColor: COLORS.TEXTPRIMARY,
+      borderColor: '#0D6EFD',
       borderWidth: 1,
       marginBottom: 15,
       paddingHorizontal: 10,
       width: '100%',
+      color:'black'
     },
     addButton: {
-      backgroundColor: 'blue',
+      backgroundColor: '#0D6EFD',
       padding: 10,
       borderRadius: 5,
       marginBottom: 10,

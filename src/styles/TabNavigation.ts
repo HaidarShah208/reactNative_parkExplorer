@@ -13,11 +13,11 @@ export const navs = StyleSheet.create({
   },
 
   tabIconContainer: {
-    width: 68,
+    width: 48,
     height: 48,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 10,
+    borderRadius: 50,
   },
   tabIconFocused: {
     backgroundColor: '#0D6EFD',

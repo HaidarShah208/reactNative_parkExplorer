@@ -1,12 +1,6 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {
-  FAVOURITE,
-  HOME,
-  IMAGES,
-  SrchIMAGES,
-} from '../../constants/assets/images';
-import Button from '../../components/button/Button';
+import {HOME, IMAGES, SrchIMAGES} from '../../constants/assets/images';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamsDetailsList} from '../../navigation/detailNavigation/DetailNavigation';
 import {styleHome} from '../home/HomeStyle';
@@ -21,64 +15,69 @@ interface DetailsProps {
   isMyDonation: boolean;
 }
 export default function Details({navigation, route}: DetailsProps) {
-  const {
-    userData,
-    donationData,
-    handleAdoptNow,
-    isFavorite,
-    handleDeleteClick,
-  } = useDetails({
+  const {parkData} = route.params;
+  const {userData,handleFavoriteClick,favorite,activities} = useDetails({
     route,
   });
-  const isMyDonation = route.params?.isMyDonation;
+
+  
 
   return (
-    <ScrollView>
-      <View style={DetialsStyle.MainConaier}>
-        <View style={DetialsStyle.ImgView}>
-          <Image
-            source={{uri: donationData.imageURL}}
-            style={{width: 380, height: 380}}
-          />
-          <IMAGES.DetailBack
-            style={{
-              position: 'absolute',
-              top: 20,
-              width: 20,
-              height: 20,
-              left: 30,
-            }}
-            onPress={() => navigation.goBack()}
-          />
-          {isFavorite && (
+    <View style={DetialsStyle.MainConaier}>
+      <View style={DetialsStyle.ImgView}>
+        <Image
+          source={{uri: parkData.images[0]?.url}}
+          style={{width: 380, height: 380}}
+        />
+        <IMAGES.DetailBack
+          style={{
+            position: 'absolute',
+            top: 20,
+            width: 20,
+            height: 20,
+            left: 30,
+          }}
+          onPress={() => navigation.goBack()}
+        />
+        <TouchableOpacity
+          onPress={handleFavoriteClick}
+          style={{position: 'absolute', top: 22, left: 330}}>
+          {favorite ? (
             <SrchIMAGES.Heart
               style={{
-                position: 'absolute',
-                top: 30,
-                width: 25,
+                width: 125,
                 height: 23,
-                left: 330,
+                backgroundColor: 'white',
+                padding: 15,
+                borderRadius: 10,
+                overflow: 'hidden',
               }}
             />
-          )}
-          {isMyDonation && (
-            <FAVOURITE.Delete
+          ) : (
+            <SrchIMAGES.EmptyHeart
               style={{
-                position: 'absolute',
-                top: 30,
-                width: 25,
+                width: 125,
                 height: 23,
-                left: 330,
+                backgroundColor: 'white',
+                padding: 15,
+                borderRadius: 10,
+                overflow: 'hidden',
               }}
-              onPress={() => handleDeleteClick(donationData)}
             />
           )}
-        </View>
+        </TouchableOpacity>
+      </View>
+      <ScrollView>
         <View style={DetialsStyle.InfoContainer}>
           <View style={DetialsStyle.InfoHeading}>
             <View>
-              <Text style={DetialsStyle.InfoText}>{donationData.petBreed}</Text>
-              <Text style={DetialsStyle.InfoSub}>{donationData.petType}</Text>
+              <Text style={DetialsStyle.InfoSub}>{parkData.designation}</Text>
+              <View style={DetialsStyle.locaiton}>
+                <HOME.Locator width={15} height={15} />
+                <Text style={DetialsStyle.loc}>
+                  {parkData?.addresses[0]?.city}
+                </Text>
+              </View>
             </View>
             <View style={DetialsStyle.MainInfo}>
               <View style={DetialsStyle.detailsInfo}>
@@ -97,38 +96,60 @@ export default function Details({navigation, route}: DetailsProps) {
               </View>
             </View>
           </View>
-      <View>
 
-      <View style={DetialsStyle.locaiton}>
-              <HOME.Locator width={15} height={15} />
-              <Text style={DetialsStyle.loc}>{donationData.petLocation}</Text>
-            </View>
-      </View>
           <Text
             style={{
               color: 'black',
               fontSize: 20,
               fontWeight: '600',
-              paddingStart: 20,
-              marginTop: 10,
+              marginTop: 40,
             }}>
             About Discription
           </Text>
           <View style={DetialsStyle.DisContainer}>
             <Text style={DetialsStyle.discription}>
-              {donationData.description}...
+              {parkData.description}...
               <Text style={DetialsStyle.readMore}>Read more</Text>
             </Text>
           </View>
-          <View style={DetialsStyle.btnsContainer}>
-            <Button
-              title={'Adopt Now'}
-              buttonStyle={DetialsStyle.buttonStyle}
-              onPress={handleAdoptNow}
-            />
+          <View>
+            <Text style={DetialsStyle.InfoSub}>Activities</Text>
+            <View style={{flexDirection: 'row'}}>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styleHome.scrollImage}>
+                {activities.map((activity: any, index: any) => (
+                  <TouchableOpacity key={index}>
+                    <View style={[styleHome.locator]}>
+                      <Text style={styleHome.tsxt}>{activity}</Text>
+                    </View>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            </View>
           </View>
+
+          <Text
+            style={{
+              color: 'black',
+              fontSize: 20,
+              fontWeight: '600',
+              marginTop: 40,
+              marginBottom: 20,
+            }}>
+            Maps
+          </Text>
+          <View
+            style={{
+              width: '100%',
+              height: 100,
+              backgroundColor: 'black',
+              borderRadius: 12,
+              marginBottom: 196,
+            }}></View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }

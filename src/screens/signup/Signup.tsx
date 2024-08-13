@@ -9,7 +9,6 @@ import React from 'react';
 import {styles} from './SignupStyle';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamsList} from '../../navigation/stackNavigation/StackNavigation';
-import {IMAGES} from '../../constants/assets/images';
 import Button from '../../components/button/Button';
 import {UserData} from '../../constants/allTypes/allTypes';
 import useSignUp from './useSignup';
