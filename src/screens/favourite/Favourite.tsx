@@ -12,6 +12,7 @@ import {FAVOURITE} from '../../constants/assets/images';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamsDetailsList} from '../../navigation/tabNavigation/DetailsNavigation';
 import useFavourite from './useFavourite';
+import { BOTTOM_TAB_SCREENS } from '../../constants/navigationScreenNames/NavigationScreenNames';
 
 interface FavrouriteScreenProps {
   navigation: StackNavigationProp<RootStackParamsDetailsList, 'search'>;
@@ -23,7 +24,7 @@ export default function Favourite({navigation}: FavrouriteScreenProps) {
     <View style={searchSt.container}>
       <View style={searchSt.header}>
         <Text style={searchSt.heading}>Favourite</Text>
-        <FAVOURITE.ADD onPress={() => navigation.navigate('search')} />
+        <FAVOURITE.ADD onPress={() => navigation.navigate(BOTTOM_TAB_SCREENS.SEARCH, { screen: 'search' })} />
       </View>
 
       <ScrollView>
@@ -86,4 +87,3 @@ function setImageUrl(url: string) {
   throw new Error('Function not implemented.');
 }
 
-const styles = StyleSheet.create({});

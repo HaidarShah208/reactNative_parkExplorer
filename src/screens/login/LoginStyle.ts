@@ -84,6 +84,7 @@ export const styles = StyleSheet.create({
   haveAccount: {
     color: 'black',
     fontFamily: FONTS.SemiBold,
+    marginVertical:10
   },
   img: {
     height: 48,

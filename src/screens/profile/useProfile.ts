@@ -19,10 +19,9 @@ export default function useProfile() {
   const [loading, setLoading] = useState(false);
   const [resource, setResource] = useState<Resource>({});
   const [profileImage, setProfileImage] = useState<string | null>(null);
-  const [imageUploading ,setImageUploading] = useState(false)
+  const [imageUploading, setImageUploading] = useState(false);
   const currentUser = auth().currentUser;
-  
-  
+
   useEffect(() => {
     if (user?.photoURL) {
       setProfileImage(user.photoURL);
@@ -31,7 +30,7 @@ export default function useProfile() {
 
   useEffect(() => {
     if (currentUser) {
-      fetchUserData(currentUser.uid); 
+      fetchUserData(currentUser.uid);
     }
   }, [currentUser]);
 
@@ -83,26 +82,6 @@ export default function useProfile() {
     }
   };
 
-  const updateUserProfile = () => {
-    currentUser.updateProfile({
-      displayName: name,
-    });
-    const userDocRef = firestore().collection('users').doc(user?.user.uid);
-    userDocRef
-      .update({
-        username: name,
-      })
-      .then(() => {
-        Toast.show({
-          type: 'success',
-          text1: 'profile updated',
-        });
-      })
-      .catch(error => {
-        Alert.alert('Error', error.message);
-      });
-  };
-
   const handlePicture = async () => {
     const options: ImagePicker.ImageLibraryOptions & {
       title: string;
@@ -132,7 +111,6 @@ export default function useProfile() {
       if (uri !== undefined && uri !== null) {
         uploadImageToFirebaseStorage(uri);
       }
-     
     } catch (err) {
       Toast.show({
         type: 'error',
@@ -143,7 +121,7 @@ export default function useProfile() {
 
   const uploadImageToFirebaseStorage = async (uri: string) => {
     try {
-      setImageUploading(true)
+      setImageUploading(true);
       const imageName = uri.substring(uri.lastIndexOf('/') + 1);
       const response = await fetch(uri);
       const blob = await response.blob();
@@ -161,7 +139,7 @@ export default function useProfile() {
             text1: 'Profile updated successfully',
           });
           setProfileImage(downloadURL);
-          setImageUploading(false)
+          setImageUploading(false);
         })
         .catch(error => {
           Alert.alert('Error', error.message);

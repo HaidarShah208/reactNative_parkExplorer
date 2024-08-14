@@ -1,19 +1,15 @@
-// store.ts
+import {useDispatch,} from 'react-redux';
 import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
-import getDonationReducer from './slice/getDonationSlice';
-import dontionRequest from './slice/getDonationRequestSlice';
 import authReducer from './slice/authSlice';
 import parksReducer from './slice/parkSlice';
 import favoritesReducer from './slice/favoriteSlice';
-import {useDispatch,} from 'react-redux';
-
+import searchParksReducer from './slice/searchParksSlice';
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    donation: getDonationReducer,
-    request: dontionRequest,
     parks: parksReducer,
     favorites: favoritesReducer,
+     searchParks: searchParksReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

@@ -22,13 +22,14 @@ import {fetchParks} from '../../store/slice/parkSlice';
 import PapularParks from '../../components/papularParks/PapularParks';
 import StatesList from '../../components/stateLists/StatesLists';
 import CategoryList from '../../components/categoryList/CategoryList';
+import {BOTTOM_TAB_SCREENS} from '../../constants/navigationScreenNames/NavigationScreenNames';
 
 interface HomeScreenProps {
   navigation: StackNavigationProp<RootStackParamsDetailsList, 'home'>;
 }
 
 export default function Home({navigation}: HomeScreenProps) {
-  const {navigations, donationDataHorizontal, currentUser} = useHome();
+  const {navigations, currentUser} = useHome();
   const dispatch = useDispatch();
   const {data, loading} = useSelector((state: RootState) => state.parks);
 
@@ -57,7 +58,10 @@ export default function Home({navigation}: HomeScreenProps) {
             <Text style={styleHome.location}>location here</Text>
           </View>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate('user')}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate(BOTTOM_TAB_SCREENS.PROFILE, {screen: 'user'})
+          }>
           {currentUser && currentUser.photoURL ? (
             <Image
               source={{uri: currentUser.photoURL}}
@@ -80,17 +84,17 @@ export default function Home({navigation}: HomeScreenProps) {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styleHome.scrollImage}>
           {loading ? (
-              <ActivityIndicator size="large" color="black" />
-          ) : donationDataHorizontal?.length === 0 ? (
+            <ActivityIndicator size="large" color="black" />
+          ) : selectedState?.length === 0 ? (
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
               <Text style={styleHome.notAvail}>This Park is not available</Text>
             </View>
           ) : (
             <StatesList
-            states={states}  
-            selectedState={selectedState} 
-            onStateClick={handleStateClick} 
-          />
+              states={states}
+              selectedState={selectedState}
+              onStateClick={handleStateClick}
+            />
           )}
         </ScrollView>
       </View>
@@ -99,22 +103,31 @@ export default function Home({navigation}: HomeScreenProps) {
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styleHome.scrollImage}>
-            <CategoryList
-            parks={data.data.data} 
-            onParkSelect={(park) => navigation.navigate('details', { parkData: park } as any)}  
+          <CategoryList
+            parks={data.data.data}
+            onParkSelect={park =>
+              navigation.navigate('details', {parkData: park} as any)
+            }
           />
         </ScrollView>
       </View>
       <View style={styleHome.homeImgContainer}>
         <Text style={styleHome.homeHeading}>Papulor designation</Text>
-        <Text style={styleHome.viewall}>View all</Text>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate(BOTTOM_TAB_SCREENS.SEARCH, {screen: 'search'})
+          }>
+          <Text style={styleHome.viewall}>View all</Text>
+        </TouchableOpacity>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
-         <PapularParks 
-          parks={data.data.data}  
-          onParkSelect={(park) => navigation.navigate('details', { parkData: park } as any)}
-         />
+          <PapularParks
+            parks={data.data.data}
+            onParkSelect={park =>
+              navigation.navigate('details', {parkData: park} as any)
+            }
+          />
         </View>
       </ScrollView>
     </>

@@ -1,9 +1,8 @@
 import {useDispatch, useSelector} from 'react-redux';
-import { selectFavorites, setFavorites } from '../../store/slice/favoriteSlice';
-import { useEffect } from 'react';
+import {selectFavorites, setFavorites} from '../../store/slice/favoriteSlice';
+import {useEffect} from 'react';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
-
 
 export default function useFavourite() {
   const dispatch = useDispatch();
@@ -28,7 +27,6 @@ export default function useFavourite() {
       return () => unsubscribe();
     }
   }, [dispatch, userId]);
-
 
   return {favorites};
 }

@@ -126,40 +126,6 @@ export default function useSignup() {
         });
       });
   };
-  const LoginWithGoogle = async () => {
-    try {
-      await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
-      const {idToken} = await GoogleSignin.signIn();
-      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-      const userCredential = await auth().signInWithCredential(
-        googleCredential,
-      );
-      const userData = {
-        displayName: userCredential.user.displayName,
-        email: userCredential.user.email,
-        photoURL: userCredential.user.photoURL,
-        uid: userCredential.user.uid,
-        creationTime: userCredential.user.metadata.creationTime,
-      };
-      await firestore()
-        .collection("users")
-        .doc(userCredential.user.uid)
-        .set({
-          username: userData.displayName,
-          email: userData.email,
-          uid: userData.uid,
-          password: '',
-          confirmPassword: '',
-          photoURL: userData.photoURL,
-          creationTime: userData.creationTime,
-          status: 'Active',
-          lastSeen: new Date().toLocaleDateString(),
-        });
-      dispatch(login(userData as UserData));
-      console.log('Success', 'User SignUp Successfully', 'success');
-    } catch (error) {
-      console.error('Error during Google sign-in:', error);
-    }
-  };
-  return {handleRegister,LoginWithGoogle, loading, handleChange, state};
+ 
+  return {handleRegister, loading, handleChange, state};
 }

@@ -1,19 +1,22 @@
 import auth from '@react-native-firebase/auth';
 import {useEffect, useState} from 'react';
 import Toast from 'react-native-toast-message';
-import { useDispatch, useSelector} from 'react-redux';
-import { addFavorite, removeFavorite, selectFavorites } from '../../store/slice/favoriteSlice';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  addFavorite,
+  removeFavorite,
+  selectFavorites,
+} from '../../store/slice/favoriteSlice';
 import firestore from '@react-native-firebase/firestore';
- 
+
 export default function useDetails({route}: any) {
-  const { parkData } = route.params as { parkData: any };
- 
+  const {parkData} = route.params as {parkData: any};
+
   const [userData, setUserData] = useState<{
     username?: string;
     photoURL?: string;
     uid: string;
   } | null>(null);
-  
 
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
@@ -61,19 +64,10 @@ export default function useDetails({route}: any) {
     setFavorite(!favorite);
   };
 
- 
-
- 
-   
-
- 
-
- 
-
   return {
     handleFavoriteClick,
     userData,
     favorite,
-    activities
+    activities,
   };
 }

@@ -13,13 +13,14 @@ import Button from '../../components/button/Button';
 import {UserData} from '../../constants/allTypes/allTypes';
 import useSignUp from './useSignup';
 import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import GoogleButton from '../../components/googleButton/GoogleButton';
 
 interface SignupScreenProps {
   navigation: StackNavigationProp<RootStackParamsList, 'SIGNUP'>;
 }
 
 export default function Signup({navigation}: SignupScreenProps) {
-  const {loading, handleRegister,LoginWithGoogle, handleChange, state} = useSignUp();
+  const {loading, handleRegister, handleChange, state} = useSignUp();
   return (
     <View style={styles.flexContainer}>
       <Text style={styles.heading}>Sign up now</Text>
@@ -72,11 +73,8 @@ export default function Signup({navigation}: SignupScreenProps) {
       </TouchableOpacity>
       </View>
       <View style={styles.containerGoole}>
-      <GoogleSigninButton
-      onPress={LoginWithGoogle}
-        style={styles.signInButton}
-        size={GoogleSigninButton.Size.Wide}
-      />
+       <GoogleButton
+       />
     </View>
     </View>
   );

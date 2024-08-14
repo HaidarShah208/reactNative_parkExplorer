@@ -16,11 +16,9 @@ interface DetailsProps {
 }
 export default function Details({navigation, route}: DetailsProps) {
   const {parkData} = route.params;
-  const {userData,handleFavoriteClick,favorite,activities} = useDetails({
+  const {userData, handleFavoriteClick, favorite, activities} = useDetails({
     route,
   });
-
-  
 
   return (
     <View style={DetialsStyle.MainConaier}>
