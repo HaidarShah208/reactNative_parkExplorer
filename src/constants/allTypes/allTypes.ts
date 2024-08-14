@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import {ReactNode} from 'react';
 
 export interface AuthContextProps {
   isAuth: boolean;
@@ -37,8 +37,6 @@ export type Resource = {
   data?: string;
 };
 
- 
-
 export type UserData = {
   username: string;
   email: string;
@@ -59,10 +57,9 @@ export type AuthStates = {
   isAppLoading: boolean;
 };
 
-
-export type ButtonProps= {
+export type ButtonProps = {
   title: ReactNode;
   onPress: () => void;
   buttonStyle?: object;
   textStyle?: object;
-}
+};

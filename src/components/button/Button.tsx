@@ -1,9 +1,7 @@
-import { Text,  TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import React from 'react';
-import { ButtonProps } from '../../constants/allTypes/allTypes';
-import { styles } from './style';
-
-
+import {ButtonProps} from '../../constants/allTypes/allTypes';
+import {styles} from './style';
 
 const Button: React.FC<ButtonProps> = ({
   title,
@@ -17,7 +15,5 @@ const Button: React.FC<ButtonProps> = ({
     </TouchableOpacity>
   );
 };
-
-
 
 export default Button;

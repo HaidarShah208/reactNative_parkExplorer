@@ -1,8 +1,8 @@
-import {View,  TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import {TextInput} from 'react-native-gesture-handler';
 import {HOME} from '../../constants/assets/images';
-import { styleInput } from './style';
+import {styleInput} from './style';
 
 interface InputProps {
   onInputChange?: (text: any) => void;
@@ -33,4 +33,3 @@ const Input: React.FC<InputProps> = ({onInputChange}) => {
 };
 
 export default Input;
-

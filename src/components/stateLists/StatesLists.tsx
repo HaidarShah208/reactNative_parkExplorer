@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { HOME } from '../../constants/assets/images';
-import { styleHome } from '../../screens/home/HomeStyle';
+import {View, Text, TouchableOpacity} from 'react-native';
+import {HOME} from '../../constants/assets/images';
+import {styleHome} from '../../screens/home/HomeStyle';
 
 interface State {
   code: string;
@@ -14,9 +14,13 @@ interface StatesListProps {
   onStateClick: (stateCode: string) => void;
 }
 
-const StatesList: React.FC<StatesListProps> = ({ states, selectedState, onStateClick }) => {
+const StatesList: React.FC<StatesListProps> = ({
+  states,
+  selectedState,
+  onStateClick,
+}) => {
   return (
-    <View style={{ flexDirection: 'row' }}>
+    <View style={{flexDirection: 'row'}}>
       {states.map((state, index) => (
         <TouchableOpacity key={index} onPress={() => onStateClick(state.code)}>
           <View

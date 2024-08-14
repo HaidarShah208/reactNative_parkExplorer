@@ -1,6 +1,4 @@
-import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import Details from '../../screens/details/Details';
 
 export type RootStackParamsDetailsList = {
   mydonation: undefined;
@@ -8,7 +6,3 @@ export type RootStackParamsDetailsList = {
   Add_Pet: undefined;
 };
 const Stack = createStackNavigator<RootStackParamsDetailsList>();
-
- 
-
- 

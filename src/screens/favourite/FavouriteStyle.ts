@@ -43,4 +43,23 @@ export const searchSt = StyleSheet.create({
   container: {
     marginBottom: 90,
   },
+  favrouite:{
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+  },
+  backgroundImg:{
+    width: 160,
+    height: 160,
+    marginTop: 30,
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  name:{
+    color: 'white',
+    position: 'absolute',
+    bottom: 0,
+    paddingHorizontal: 9,
+  }
 });

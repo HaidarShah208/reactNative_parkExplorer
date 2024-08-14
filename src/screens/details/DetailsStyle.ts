@@ -18,7 +18,6 @@ export const DetialsStyle = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
-
   },
   InfoHeading: {
     display: 'flex',
@@ -32,16 +31,51 @@ export const DetialsStyle = StyleSheet.create({
     fontFamily: FONTS.BOLD,
     fontWeight: 'bold',
   },
+  back: {
+    position: 'absolute',
+    top: 20,
+    width: 20,
+    height: 20,
+    left: 30,
+  },
   InfoSub: {
     color: 'black',
     fontSize: 19,
-    fontWeight:'bold',
+    fontWeight: 'bold',
     paddingTop: 10,
   },
-
+  img: {width: 380, height: 380},
   detailsInfo: {
     display: 'flex',
     flexDirection: 'row',
+  },
+  heart:{
+    width: 125,
+    height: 23,
+    backgroundColor: 'white',
+    padding: 15,
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  disc:{
+    color: 'black',
+    fontSize: 20,
+    fontWeight: '600',
+    marginTop: 40,
+  },
+  map:{
+    color: 'black',
+    fontSize: 20,
+    fontWeight: '600',
+    marginTop: 40,
+    marginBottom: 20,
+  },
+  mapBox:{
+    width: '100%',
+    height: 100,
+    backgroundColor: 'black',
+    borderRadius: 12,
+    marginBottom: 196,
   },
 
   locaiton: {
@@ -71,10 +105,9 @@ export const DetialsStyle = StyleSheet.create({
     marginTop: 20,
     textAlign: 'center',
     alignItems: 'center',
-    marginBottom:30
+    marginBottom: 30,
   },
   readMore: {
     textDecorationLine: 'underline',
   },
- 
 });

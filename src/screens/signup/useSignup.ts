@@ -9,7 +9,7 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 const initialState = {
   username: '',
   email: '',
-  phone:'',
+  phone: '',
   password: '',
 };
 GoogleSignin.configure({
@@ -78,7 +78,7 @@ export default function useSignup() {
       .createUserWithEmailAndPassword(userData.email, userData.password)
       .then(userCredential => {
         const user = userCredential.user;
-      
+
         userData.uid = user.uid;
         userData.photoURL = user.photoURL;
         userData.creationTime = user.metadata.creationTime;
@@ -113,8 +113,8 @@ export default function useSignup() {
 
         if (error.code === 'auth/invalid-email') {
           setisloading(false);
-           
-         return Toast.show({
+
+          return Toast.show({
             type: 'error',
             text1: 'Email or Password Error please try again',
           });
@@ -126,6 +126,6 @@ export default function useSignup() {
         });
       });
   };
- 
+
   return {handleRegister, loading, handleChange, state};
 }

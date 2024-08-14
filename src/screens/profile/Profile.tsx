@@ -12,10 +12,9 @@ import {userStyle} from './ProfileStyle';
 import Button from '../../components/button/Button';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import useProfile from './useProfile';
-import { CompositeNavigationProp } from '@react-navigation/native';
-import { ProfileStackParamsList } from '../../navigation/stackNavigation/profileNavigation';
-import { StackNavigationProp } from '@react-navigation/stack';
-
+import {CompositeNavigationProp} from '@react-navigation/native';
+import {ProfileStackParamsList} from '../../navigation/stackNavigation/profileNavigation';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 type ProfileScreenNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<RootTabParamsList, 'user'>,
@@ -27,7 +26,6 @@ interface ProfileScreenProps {
 }
 
 export default function Profile({navigation}: ProfileScreenProps) {
-  
   const {
     currentUser,
     name,
@@ -39,7 +37,6 @@ export default function Profile({navigation}: ProfileScreenProps) {
     imageUploading,
     handleLogout,
   } = useProfile();
-
 
   return (
     <View style={userStyle.mainContainer}>
@@ -66,14 +63,13 @@ export default function Profile({navigation}: ProfileScreenProps) {
         <Text style={userStyle.userEmail}>{currentUser.email}</Text>
       </View>
 
-
-      <TouchableOpacity  onPress={() => navigation.navigate('EDITPROFILE')}
+      <TouchableOpacity
+        onPress={() => navigation.navigate('EDITPROFILE')}
         style={userStyle.button}>
         <Text style={userStyle.buttonText}>Edit Profile</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={userStyle.button}>
+      <TouchableOpacity style={userStyle.button}>
         <Text style={userStyle.buttonText}>Settings</Text>
       </TouchableOpacity>
 
@@ -88,10 +84,10 @@ export default function Profile({navigation}: ProfileScreenProps) {
         <Text style={userStyle.buttonText}>Other Options</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={[userStyle.button, userStyle.logoutButton]}
-        >
-        <Text style={userStyle.buttonText} onPress={handleLogout}>Sign Out</Text>
+      <TouchableOpacity style={[userStyle.button, userStyle.logoutButton]}>
+        <Text style={userStyle.buttonText} onPress={handleLogout}>
+          Sign Out
+        </Text>
       </TouchableOpacity>
 
       <View style={userStyle.btnsContainer}>

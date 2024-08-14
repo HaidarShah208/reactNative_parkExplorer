@@ -31,9 +31,10 @@ interface HomeScreenProps {
 export default function Home({navigation}: HomeScreenProps) {
   const {navigations, currentUser} = useHome();
   const dispatch = useDispatch();
+  const [selectedState, setSelectedState] = useState('AL');
+  const [filteredParks, setFilteredParks] = useState([]);
   const {data, loading} = useSelector((state: RootState) => state.parks);
 
-  const [selectedState, setSelectedState] = useState('AL');
   const handleStateClick = (stateCode: string) => {
     setSelectedState(stateCode);
   };
@@ -44,6 +45,13 @@ export default function Home({navigation}: HomeScreenProps) {
 
     fetchData();
   }, [dispatch, selectedState]);
+
+  useEffect(() => {
+    if (data && data.data && data.data.data) {
+      const filtered = data.data.data.filter(park => park.states.includes(selectedState));
+      setFilteredParks(filtered);
+    }
+  }, [data, selectedState]);
   return (
     <>
       <View style={styleHome.header}>
@@ -51,9 +59,9 @@ export default function Home({navigation}: HomeScreenProps) {
           onPress={() => navigations.dispatch(DrawerActions.openDrawer())}>
           <HOME.NavImg />
         </TouchableOpacity>
-        <View style={{display: 'flex', flexDirection: 'column'}}>
+        <View style={styleHome.current}>
           <Text style={styles.haveAccount}>Current Location</Text>
-          <View style={{display: 'flex', flexDirection: 'row'}}>
+          <View style={styleHome.loc}>
             <HOME.Locator />
             <Text style={styleHome.location}>location here</Text>
           </View>
@@ -69,9 +77,7 @@ export default function Home({navigation}: HomeScreenProps) {
             />
           ) : (
             <HOME.DefaultHome
-              height={48}
-              width={48}
-              style={{borderRadius: 30}}
+              style={styleHome.defaultHome}
             />
           )}
         </TouchableOpacity>
@@ -86,7 +92,7 @@ export default function Home({navigation}: HomeScreenProps) {
           {loading ? (
             <ActivityIndicator size="large" color="black" />
           ) : selectedState?.length === 0 ? (
-            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <View style={styleHome.center}>
               <Text style={styleHome.notAvail}>This Park is not available</Text>
             </View>
           ) : (
@@ -104,7 +110,7 @@ export default function Home({navigation}: HomeScreenProps) {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styleHome.scrollImage}>
           <CategoryList
-            parks={data.data.data}
+            parks={filteredParks}
             onParkSelect={park =>
               navigation.navigate('details', {parkData: park} as any)
             }
@@ -121,9 +127,9 @@ export default function Home({navigation}: HomeScreenProps) {
         </TouchableOpacity>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <View style={styleHome.center}>
           <PapularParks
-            parks={data.data.data}
+            parks={filteredParks}
             onParkSelect={park =>
               navigation.navigate('details', {parkData: park} as any)
             }

@@ -15,18 +15,23 @@ export default function ForgetPassword({navigation}: ForgotScreenProps) {
 
   return (
     <View style={styles.flexContainer}>
-      <IMAGES.RecoverBack style={{marginTop: 30}} onPress={()=>navigation.goBack()} />
+      <IMAGES.RecoverBack
+        style={{marginTop: 30}}
+        onPress={() => navigation.goBack()}
+      />
       <Text style={styles.heading}>Forgot Password</Text>
-      <Text style={styles.login}>Enter your email account to reset  your password</Text>
+      <Text style={styles.login}>
+        Enter your email account to reset your password
+      </Text>
 
       <TextInput
         style={styles.input}
         value={email}
-         placeholder='email'
-           placeholderTextColor="black"
+        placeholder="email"
+        placeholderTextColor="black"
         onChangeText={email => setEmail(email)}
       />
-      
+
       <Button title={'Recover'} onPress={handleSubmit} />
     </View>
   );

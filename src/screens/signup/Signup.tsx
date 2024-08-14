@@ -12,7 +12,6 @@ import {RootStackParamsList} from '../../navigation/stackNavigation/StackNavigat
 import Button from '../../components/button/Button';
 import {UserData} from '../../constants/allTypes/allTypes';
 import useSignUp from './useSignup';
-import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import GoogleButton from '../../components/googleButton/GoogleButton';
 
 interface SignupScreenProps {

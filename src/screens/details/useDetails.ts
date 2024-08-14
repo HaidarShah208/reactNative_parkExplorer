@@ -28,9 +28,9 @@ export default function useDetails({route}: any) {
   );
 
   useEffect(() => {
-    const isFavorite = favorites.some(fav => fav.parkId === parkData.parkId);
+    const isFavorite = favorites.some(fav => fav.parkId === parkData.id);
     setFavorite(isFavorite);
-  }, [favorites, parkData.parkId]);
+  }, [favorites, parkData.id]);
 
   const handleFavoriteClick = async () => {
     const parkId = parkData.id;

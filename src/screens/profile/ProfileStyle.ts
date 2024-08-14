@@ -25,15 +25,14 @@ export const userStyle = StyleSheet.create({
     fontSize: 21,
     color: 'black',
     fontWeight: '600',
-    textAlign:'center',
+    textAlign: 'center',
     fontFamily: FONTS.SemiBold,
   },
-  userEmail:{
-    color:'#959595',
-    textAlign:'center',
-
+  userEmail: {
+    color: '#959595',
+    textAlign: 'center',
   },
- 
+
   btnsContainer: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -50,7 +49,7 @@ export const userStyle = StyleSheet.create({
     left: 89,
     bottom: 22,
   },
-   button: {
+  button: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#4CAAE4',
@@ -70,7 +69,8 @@ export const userStyle = StyleSheet.create({
   },
   container: {
     flexGrow: 1,
-    padding: 30,
+    paddingTop: 80,
+    paddingHorizontal:30,
     backgroundColor: 'white',
   },
   inputContainer: {

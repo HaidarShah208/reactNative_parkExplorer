@@ -15,7 +15,6 @@ import {HOME, IMAGES} from '../../constants/assets/images';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch, RootState} from '../../store/store';
 import {fetchSearchParks} from '../../store/slice/searchParksSlice';
-import {StyleSheet} from 'react-native';
 
 interface SearchScreenProps {
   navigation: StackNavigationProp<RootStackParamsDetailsList, 'search'>;
@@ -48,54 +47,15 @@ const Search = ({navigation}: SearchScreenProps) => {
   const renderItem = ({item}) => (
     <TouchableOpacity
       onPress={() => navigation.navigate('details', {parkData: item} as any)}>
-      <View
-        style={{
-          elevation: 3,
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: 0.3,
-          width: 330,
-          height: 100,
-          marginBottom: 10,
-          paddingHorizontal: 10,
-          borderRadius: 10,
-          overflow: 'hidden',
-
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          backgroundColor: '#F7F7F9',
-        }}>
-        <Image
-          source={{uri: item.images?.[0]?.url || 'default_image_url'}}
-          style={{
-            width: 80,
-            height: 80,
-            borderRadius: 10,
-            overflow: 'hidden',
-          }}
-        />
+      <View style={style.container}>
+        <Image source={{uri: item.images?.[0]?.url}} style={style.img} />
         <View style={{marginStart: 15}}>
-          <Text style={{fontSize: 9, fontWeight: 'bold', color: 'black'}}>
-            {item.fullName}
-          </Text>
-          <View
-            style={{display: 'flex', flexDirection: 'row', paddingVertical: 4}}>
+          <Text style={style.text}>{item.fullName}</Text>
+          <View style={style.city}>
             <HOME.Locator width={10} style={{marginTop: 3}} height={10} />
-            <Text style={{paddingStart: 3, fontSize: 12, color: '#272727'}}>
-              {item?.addresses[0]?.city}
-            </Text>
+            <Text style={style.cityName}>{item?.addresses[0]?.city}</Text>
           </View>
-          <Text
-            style={{
-              paddingEnd: 4,
-              fontSize: 10,
-              color: '#959595',
-              flexWrap: 'wrap',
-            }}>
+          <Text style={style.discription}>
             {item.description.length > 15
               ? `${item.description.substring(0, 80)}...`
               : item.description}
@@ -120,17 +80,17 @@ const Search = ({navigation}: SearchScreenProps) => {
         </View>
       </View>
 
-      <View style={styles.scrollView}>
+      <View style={style.scrollView}>
         {loading ? (
-          <Text style={styles.loadingText}>Loading...</Text>
+          <Text style={style.loadingText}>Loading...</Text>
         ) : searchResults.length === 0 && query.length > 0 ? (
-          <Text style={styles.loadingText}>No results found</Text>
+          <Text style={style.loadingText}>No results found</Text>
         ) : (
           <FlatList
             data={searchResults}
             renderItem={renderItem}
             keyExtractor={(item, index) => `${item.id}-${index}`}
-            contentContainerStyle={styles.list}
+            contentContainerStyle={style.list}
             ListFooterComponent={() =>
               searchResults.length > 0 &&
               searchResults.length < totalResults ? (
@@ -146,50 +106,4 @@ const Search = ({navigation}: SearchScreenProps) => {
 
 export default Search;
 
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  searchBar: {
-    flexDirection: 'row',
-    padding: 10,
-  },
-  inputs: {
-    flex: 1,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 5,
-  },
-  scrollView: {
-    flexGrow: 1,
-    marginTop: 100,
-    marginBottom: 30,
-  },
-  list: {
-    marginBottom: 10,
-    padding: 10,
-  },
-  loadingText: {
-    marginTop: 50,
-    textAlign: 'center',
-    color: 'black',
-    fontSize: 12,
-  },
-  parkItem: {
-    marginTop: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  parkImage: {
-    width: 50,
-    height: 50,
-    marginRight: 10,
-  },
-  parkName: {
-    fontSize: 16,
-    color: '#333',
-  },
-});
+ 

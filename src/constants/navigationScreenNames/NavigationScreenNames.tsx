@@ -1,4 +1,3 @@
-
 export const AUTH_STACK_SCREEN = {
   SIGNUP: 'SIGNUP',
   LOGIN: 'LOGIN',
@@ -13,9 +12,7 @@ export const BOTTOM_TAB_SCREENS = {
   PROFILE: 'PROFILE',
 };
 
-
 export const PROFILE_STACK_SCREEN = {
   PROFILE: 'PROFILE',
   EDITPROFILE: 'EDITPROFILE',
 };
- 
