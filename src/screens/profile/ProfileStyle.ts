@@ -6,10 +6,10 @@ export const userStyle = StyleSheet.create({
     justifyContent: 'space-between',
     display: 'flex',
     flexDirection: 'column',
-    height: '100%',
-    marginBottom: 20,
+    marginBottom: 70,
     alignItems: 'center',
-    padding: 30,
+    paddingTop: 10,
+    paddingHorizontal:30
   },
   main: {
     alignItems: 'center',
@@ -54,8 +54,8 @@ export const userStyle = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#4CAAE4',
     padding: 15,
+    marginBottom:10,
     borderRadius: 5,
-    marginBottom: 10,
     width: '100%',
     justifyContent: 'center',
   },
